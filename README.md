@@ -278,6 +278,6 @@ ng build --configuration production
 
 <div align="center">
 
-<sub>MIT © 2024 · Angular 17 · No CSS frameworks · Designed for humans</sub>
+<sub>MIT © 2026 · Angular 17 · No CSS frameworks · Designed for humans</sub>
 
 </div>
