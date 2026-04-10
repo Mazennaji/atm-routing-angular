@@ -1,65 +1,137 @@
 <div class="home page-enter">
 
+  <!-- Hero Welcome -->
   <div class="welcome-banner">
+    <div class="banner-glow"></div>
+    <div class="banner-grid-overlay"></div>
     <div class="welcome-text">
       <p class="greeting-label">{{ greeting }},</p>
       <h1 class="name">{{ atm.cardName() }}</h1>
       <p class="timestamp">{{ currentTime | date:'EEEE, MMMM d · h:mm:ss a' }}</p>
     </div>
     <div class="balance-card">
-      <p class="bal-label">Available Balance</p>
-      <p class="bal-amount">{{ atm.formatCurrency(atm.balance()) }}</p>
-      <p class="bal-account">Checking •••• {{ atm.cardLast4() }}</p>
+      <div class="balance-card-inner">
+        <p class="bal-label">Available Balance</p>
+        <p class="bal-amount">{{ atm.formatCurrency(atm.balance()) }}</p>
+        <p class="bal-account">Checking •••• {{ atm.cardLast4() }}</p>
+      </div>
+      <div class="bal-ring"></div>
     </div>
   </div>
 
-  <h2 class="section-title">Quick Actions</h2>
-  <div class="actions-grid">
-
-    <a routerLink="/balance" class="action-card">
-      <div class="action-icon balance-icon">◎</div>
-      <div class="action-info">
-        <span class="action-name">Check Balance</span>
-        <span class="action-desc">View account details</span>
-      </div>
-      <span class="action-arrow">→</span>
-    </a>
-
-    <a routerLink="/withdraw" class="action-card action-card--primary">
-      <div class="action-icon withdraw-icon">↑</div>
-      <div class="action-info">
-        <span class="action-name">Withdraw Cash</span>
-        <span class="action-desc">Fast &amp; secure</span>
-      </div>
-      <span class="action-arrow">→</span>
-    </a>
-
-    <a routerLink="/deposit" class="action-card">
-      <div class="action-icon deposit-icon">↓</div>
-      <div class="action-info">
-        <span class="action-name">Deposit Funds</span>
-        <span class="action-desc">Add to your account</span>
-      </div>
-      <span class="action-arrow">→</span>
-    </a>
-
-    <a routerLink="/receipt" class="action-card">
-      <div class="action-icon receipt-icon">≡</div>
-      <div class="action-info">
-        <span class="action-name">Last Receipt</span>
-        <span class="action-desc">View transaction</span>
-      </div>
-      <span class="action-arrow">→</span>
-    </a>
-
+  <!-- Quick Actions -->
+  <div class="section-header">
+    <h2 class="section-title">Quick Actions</h2>
+    <span class="section-line"></span>
   </div>
 
-  <div class="info-strip">
-    <span>🔒 256-bit encrypted</span>
-    <span class="dot">·</span>
-    <span>Daily limit: $2,000</span>
-    <span class="dot">·</span>
-    <span>Fee-free withdrawals</span>
+  <div class="actions-grid">
+    <a routerLink="/balance" class="action-card" style="--delay: 0.05s; --card-accent: #60a5fa;">
+      <div class="action-icon balance-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div class="action-info">
+        <span class="action-name">Check Balance</span>
+        <span class="action-desc">View account details &amp; history</span>
+      </div>
+      <span class="action-arrow">→</span>
+      <div class="action-shine"></div>
+    </a>
+
+    <a routerLink="/withdraw" class="action-card action-card--primary" style="--delay: 0.1s; --card-accent: var(--accent);">
+      <div class="action-icon withdraw-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </div>
+      <div class="action-info">
+        <span class="action-name">Withdraw Cash</span>
+        <span class="action-desc">Fast &amp; secure · fee-free</span>
+      </div>
+      <span class="action-arrow">→</span>
+      <div class="action-shine"></div>
+    </a>
+
+    <a routerLink="/deposit" class="action-card" style="--delay: 0.15s; --card-accent: #a78bfa;">
+      <div class="action-icon deposit-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </div>
+      <div class="action-info">
+        <span class="action-name">Deposit Funds</span>
+        <span class="action-desc">Add money to your account</span>
+      </div>
+      <span class="action-arrow">→</span>
+      <div class="action-shine"></div>
+    </a>
+
+    <a routerLink="/receipt" class="action-card" style="--delay: 0.2s; --card-accent: #fbbf24;">
+      <div class="action-icon receipt-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h6M8 16h4"/></svg>
+      </div>
+      <div class="action-info">
+        <span class="action-name">Last Receipt</span>
+        <span class="action-desc">View recent transaction</span>
+      </div>
+      <span class="action-arrow">→</span>
+      <div class="action-shine"></div>
+    </a>
+  </div>
+
+  <!-- Account Summary -->
+  <div class="section-header">
+    <h2 class="section-title">Account Summary</h2>
+    <span class="section-line"></span>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card" style="--delay: 0.25s;">
+      <span class="stat-dot" style="background: var(--accent);"></span>
+      <div class="stat-content">
+        <span class="stat-value">$2,000</span>
+        <span class="stat-label">Daily Limit</span>
+      </div>
+    </div>
+    <div class="stat-card" style="--delay: 0.3s;">
+      <span class="stat-dot" style="background: #60a5fa;"></span>
+      <div class="stat-content">
+        <span class="stat-value">$0.00</span>
+        <span class="stat-label">Today's Withdrawals</span>
+      </div>
+    </div>
+    <div class="stat-card" style="--delay: 0.35s;">
+      <span class="stat-dot" style="background: #a78bfa;"></span>
+      <div class="stat-content">
+        <span class="stat-value">Active</span>
+        <span class="stat-label">Card Status</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Limit Bar -->
+  <div class="limit-bar-section" style="--delay: 0.4s;">
+    <div class="limit-header">
+      <span class="limit-title">Daily Withdrawal Remaining</span>
+      <span class="limit-amount">$2,000 / $2,000</span>
+    </div>
+    <div class="limit-track">
+      <div class="limit-fill" style="--percent: 100%;"></div>
+    </div>
+  </div>
+
+  <!-- Footer Info -->
+  <div class="info-strip" style="--delay: 0.45s;">
+    <div class="info-item">
+      <span class="info-icon">◈</span>
+      <span>256-bit encrypted</span>
+    </div>
+    <span class="info-divider"></span>
+    <div class="info-item">
+      <span class="info-icon">◈</span>
+      <span>Fee-free withdrawals</span>
+    </div>
+    <span class="info-divider"></span>
+    <div class="info-item">
+      <span class="info-icon">◈</span>
+      <span>24/7 support</span>
+    </div>
   </div>
 
 </div>
