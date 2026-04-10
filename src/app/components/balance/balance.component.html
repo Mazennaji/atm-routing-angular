@@ -1,1 +1,56 @@
-<p>balance works!</p>
+<div class="balance-page page-enter">
+
+  <div class="page-header">
+    <h1 class="page-title">Account Balance</h1>
+    <span class="page-badge">Live</span>
+  </div>
+
+  <div class="balance-hero">
+    <div class="hero-label">Current Balance</div>
+    <div class="hero-amount">{{ atm.formatCurrency(atm.balance()) }}</div>
+    <div class="hero-meta">
+      <span>Checking Account</span>
+      <span class="sep">·</span>
+      <span>•••• {{ atm.cardLast4() }}</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="spendingRate"></div>
+    </div>
+    <div class="progress-label">
+      <span>{{ spendingRate.toFixed(0) }}% of $10,000 limit</span>
+    </div>
+  </div>
+
+  <div class="details-grid">
+    <div class="detail-item">
+      <span class="detail-label">Account Type</span>
+      <span class="detail-value">Checking</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Card Holder</span>
+      <span class="detail-value">{{ atm.cardName() }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Daily Limit</span>
+      <span class="detail-value">$2,000.00</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Status</span>
+      <span class="detail-value status-active">● Active</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Currency</span>
+      <span class="detail-value">USD $</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Last Update</span>
+      <span class="detail-value">{{ 'Just now' }}</span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a routerLink="/withdraw" class="btn btn-primary">Withdraw Funds</a>
+    <a routerLink="/deposit"  class="btn btn-ghost">Deposit Funds</a>
+  </div>
+
+</div>
