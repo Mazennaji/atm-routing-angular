@@ -1,1 +1,85 @@
-<p>withdraw works!</p>
+<div class="withdraw-page page-enter">
+
+  <div class="page-header">
+    <a routerLink="/" class="back-btn">← Back</a>
+    <h1 class="page-title">Withdraw Cash</h1>
+  </div>
+
+  @if (success()) {
+    <div class="success-overlay">
+      <div class="success-icon">✓</div>
+      <p>Processing withdrawal…</p>
+    </div>
+  }
+
+  <div class="withdraw-body" [class.dim]="success()">
+
+    <div class="balance-strip">
+      <span class="bs-label">Available</span>
+      <span class="bs-amount">{{ atm.formatCurrency(atm.balance()) }}</span>
+    </div>
+
+    <div class="section">
+      <p class="section-label">Quick Select</p>
+      <div class="quick-grid">
+        @for (a of quickAmounts; track a) {
+          <button
+            class="quick-btn"
+            [class.selected]="amount === a && !customMode()"
+            (click)="selectAmount(a)">
+            ${{ a }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="section-label">Custom Amount</p>
+      @if (!customMode()) {
+        <button class="custom-toggle" (click)="enableCustom()">+ Enter custom amount</button>
+      } @else {
+        <div class="custom-input-wrap">
+          <span class="currency-prefix">$</span>
+          <input
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="0.00"
+            [value]="customInput()"
+            (input)="onCustomInput($event)"
+            autofocus />
+        </div>
+      }
+    </div>
+
+    @if (amount) {
+      <div class="summary-card">
+        <div class="sum-row">
+          <span>Withdrawal Amount</span>
+          <span class="sum-val">{{ atm.formatCurrency(amount) }}</span>
+        </div>
+        <div class="sum-row">
+          <span>Fee</span>
+          <span class="sum-val text-accent">$0.00</span>
+        </div>
+        <div class="sum-divider"></div>
+        <div class="sum-row sum-total">
+          <span>Balance After</span>
+          <span class="sum-val">{{ atm.formatCurrency(atm.balance() - amount) }}</span>
+        </div>
+      </div>
+    }
+
+    @if (error()) {
+      <div class="error-msg">⚠ {{ error() }}</div>
+    }
+
+    <div class="actions">
+      <button class="btn btn-primary" [disabled]="!amount || success()" (click)="confirm()">
+        Confirm Withdrawal
+      </button>
+      <a routerLink="/" class="btn btn-ghost">Cancel</a>
+    </div>
+
+  </div>
+</div>
