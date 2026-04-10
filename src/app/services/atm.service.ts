@@ -1,4 +1,5 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal, computed, inject } from '@angular/core';
+import { AuthService } from './auth/auth.service';
 
 export interface Transaction {
   id: string;
@@ -10,10 +11,14 @@ export interface Transaction {
 
 @Injectable({ providedIn: 'root' })
 export class AtmService {
+  private auth = inject(AuthService);
+
   // ── Account state ──
   balance = signal<number>(4_300.75);
-  cardName = signal<string>('Alex Morgan');
-  cardLast4 = signal<string>('4821');
+
+  // ── Read from AuthService ──
+  cardName = computed(() => this.auth.currentUser()?.name ?? 'Guest');
+  cardLast4 = computed(() => this.auth.currentUser()?.cardNumber ?? '0000');
 
   // ── Transaction history ──
   transactions = signal<Transaction[]>([
