@@ -1,1 +1,80 @@
-<p>deposit works!</p>
+<div class="deposit-page page-enter">
+
+  <div class="page-header">
+    <a routerLink="/" class="back-btn">← Back</a>
+    <h1 class="page-title">Deposit Funds</h1>
+  </div>
+
+  @if (success()) {
+    <div class="success-overlay">
+      <div class="success-icon">✓</div>
+      <p>Deposit confirmed!</p>
+    </div>
+  }
+
+  <div class="deposit-body" [class.dim]="success()">
+
+    <div class="balance-strip">
+      <span class="bs-label">Balance After Deposit</span>
+      <span class="bs-amount">{{ atm.formatCurrency(atm.balance() + numericAmount) }}</span>
+    </div>
+
+    <div class="section">
+      <p class="section-label">Deposit Amount</p>
+      <div class="amount-input-wrap" [class.focused]="numericAmount > 0">
+        <span class="currency-prefix">$</span>
+        <input
+          type="number"
+          min="0"
+          step="0.01"
+          placeholder="0.00"
+          [value]="amount()"
+          (input)="onInput($event)" />
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="section-label">Quick Select</p>
+      <div class="quick-grid">
+        @for (a of quickAmounts; track a) {
+          <button
+            class="quick-btn"
+            [class.selected]="numericAmount === a"
+            (click)="selectQuick(a)">
+            ${{ a }}
+          </button>
+        }
+      </div>
+    </div>
+
+    @if (numericAmount > 0) {
+      <div class="summary-card">
+        <div class="sum-row">
+          <span>Deposit Amount</span>
+          <span class="sum-val">{{ atm.formatCurrency(numericAmount) }}</span>
+        </div>
+        <div class="sum-row">
+          <span>Processing Fee</span>
+          <span class="sum-val text-accent">$0.00</span>
+        </div>
+        <div class="sum-divider"></div>
+        <div class="sum-row sum-total">
+          <span>New Balance</span>
+          <span class="sum-val">{{ atm.formatCurrency(atm.balance() + numericAmount) }}</span>
+        </div>
+      </div>
+    }
+
+    @if (error()) {
+      <div class="error-msg">⚠ {{ error() }}</div>
+    }
+
+    <div class="actions">
+      <button class="btn btn-primary" [disabled]="!numericAmount || success()" (click)="confirm()">
+        Confirm Deposit
+      </button>
+      <a routerLink="/" class="btn btn-ghost">Cancel</a>
+    </div>
+
+  </div>
+</div>
