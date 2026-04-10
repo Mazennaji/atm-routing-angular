@@ -24,11 +24,6 @@
         <p class="auth-subtitle">Enter your credentials to access your account</p>
       </div>
 
-      <!-- Error -->
-      <div class="auth-error" *ngIf="false" [class.visible]="error()">
-        <span class="error-icon">!</span>
-        <span>{{ error() }}</span>
-      </div>
       @if (error()) {
         <div class="auth-error visible">
           <span class="error-icon">!</span>

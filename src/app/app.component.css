@@ -204,3 +204,41 @@
   .nav-item { padding: 10px 12px; font-size: 11px; }
   .balance-amount { font-size: 18px; }
 }
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(0, 229, 160, 0.15);
+  border-radius: 10px;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+.logout-btn:hover {
+  background: rgba(0, 229, 160, 0.12);
+  border-color: rgba(0, 229, 160, 0.35);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px var(--accent-glow);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+}
+
+.logout-btn svg {
+  transition: transform 0.25s;
+}
+
+.logout-btn:hover svg {
+  transform: translateX(2px);
+}

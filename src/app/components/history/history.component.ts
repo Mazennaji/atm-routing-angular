@@ -1,5 +1,4 @@
 import { Component, signal, computed } from '@angular/core';
-import { DatePipe } from '@angular/common';
 import { AtmService, Transaction } from '../../services/atm.service';
 
 type FilterType = 'all' | 'withdrawal' | 'deposit';
@@ -7,7 +6,7 @@ type FilterType = 'all' | 'withdrawal' | 'deposit';
 @Component({
   selector: 'app-history',
   standalone: true,
-  imports: [DatePipe],
+  imports: [],
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.css'],
 })
