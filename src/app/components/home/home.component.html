@@ -1,1 +1,65 @@
-<p>home works!</p>
+<div class="home page-enter">
+
+  <div class="welcome-banner">
+    <div class="welcome-text">
+      <p class="greeting-label">{{ greeting }},</p>
+      <h1 class="name">{{ atm.cardName() }}</h1>
+      <p class="timestamp">{{ currentTime | date:'EEEE, MMMM d · h:mm:ss a' }}</p>
+    </div>
+    <div class="balance-card">
+      <p class="bal-label">Available Balance</p>
+      <p class="bal-amount">{{ atm.formatCurrency(atm.balance()) }}</p>
+      <p class="bal-account">Checking •••• {{ atm.cardLast4() }}</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">Quick Actions</h2>
+  <div class="actions-grid">
+
+    <a routerLink="/balance" class="action-card">
+      <div class="action-icon balance-icon">◎</div>
+      <div class="action-info">
+        <span class="action-name">Check Balance</span>
+        <span class="action-desc">View account details</span>
+      </div>
+      <span class="action-arrow">→</span>
+    </a>
+
+    <a routerLink="/withdraw" class="action-card action-card--primary">
+      <div class="action-icon withdraw-icon">↑</div>
+      <div class="action-info">
+        <span class="action-name">Withdraw Cash</span>
+        <span class="action-desc">Fast &amp; secure</span>
+      </div>
+      <span class="action-arrow">→</span>
+    </a>
+
+    <a routerLink="/deposit" class="action-card">
+      <div class="action-icon deposit-icon">↓</div>
+      <div class="action-info">
+        <span class="action-name">Deposit Funds</span>
+        <span class="action-desc">Add to your account</span>
+      </div>
+      <span class="action-arrow">→</span>
+    </a>
+
+    <a routerLink="/receipt" class="action-card">
+      <div class="action-icon receipt-icon">≡</div>
+      <div class="action-info">
+        <span class="action-name">Last Receipt</span>
+        <span class="action-desc">View transaction</span>
+      </div>
+      <span class="action-arrow">→</span>
+    </a>
+
+  </div>
+
+  <div class="info-strip">
+    <span>🔒 256-bit encrypted</span>
+    <span class="dot">·</span>
+    <span>Daily limit: $2,000</span>
+    <span class="dot">·</span>
+    <span>Fee-free withdrawals</span>
+  </div>
+
+</div>
