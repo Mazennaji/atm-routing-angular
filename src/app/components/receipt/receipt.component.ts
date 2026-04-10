@@ -1,11 +1,20 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { AtmService, Transaction } from '../../services/atm.service';
 
 @Component({
   selector: 'app-receipt',
-  imports: [],
+  standalone: true,
+  imports: [RouterLink],
   templateUrl: './receipt.component.html',
-  styleUrl: './receipt.component.css'
+  styleUrls: ['./receipt.component.css']
 })
 export class ReceiptComponent {
+  constructor(public atm: AtmService) {}
 
+  get tx(): Transaction | null { return this.atm.lastTx(); }
+
+  get txId(): string {
+    return 'NX' + Math.random().toString(36).substring(2, 10).toUpperCase();
+  }
 }
