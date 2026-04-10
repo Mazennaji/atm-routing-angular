@@ -8,6 +8,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { authGuard, guestGuard } from './services/auth/auth.guard';
+import { HistoryComponent } from './components/history/history.component';
 
 export const routes: Routes = [
   // Public routes
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: 'withdraw', component: WithdrawComponent, canActivate: [authGuard] },
   { path: 'deposit',  component: DepositComponent,  canActivate: [authGuard] },
   { path: 'receipt',  component: ReceiptComponent,  canActivate: [authGuard] },
+  { path: 'history', component: HistoryComponent, canActivate: [authGuard] },
 
   // Wildcard — always last
   { path: '**',       component: NotFoundComponent },

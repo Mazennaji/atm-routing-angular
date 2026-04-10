@@ -179,3 +179,42 @@ html, body {
 .page-enter {
   animation: fadeUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
+
+/* ═══════════════════════════════════════════
+   LIGHT THEME OVERRIDES
+   Add this block to the bottom of your global styles.css
+   ═══════════════════════════════════════════ */
+
+[data-theme="light"] {
+  --bg:            #f4f5f7;
+  --surface:       #ffffff;
+  --surface-2:     #eef0f3;
+  --border:        #dde0e6;
+  --border-light:  #c8ccd4;
+  --text-1:        #111318;
+  --text-2:        #555a68;
+  --text-3:        #8b8fa3;
+  --accent:        #00b882;
+  --accent-dim:    rgba(0, 184, 130, 0.08);
+  --accent-glow:   rgba(0, 184, 130, 0.15);
+  --warn:          #e5552a;
+}
+
+/* Light theme adjustments for specific elements */
+[data-theme="light"] .auth-page {
+  background: #f4f5f7;
+}
+
+[data-theme="light"] .auth-card {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .action-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .bg-grid {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+}

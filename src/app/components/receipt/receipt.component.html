@@ -38,7 +38,7 @@
         </div>
         <div class="receipt-row">
           <span class="r-label">Date & Time</span>
-          <span class="r-value r-mono">{{ tx.timestamp | date:'MMM d, y · h:mm a' }}</span>
+          <span class="r-value r-mono">{{ tx.date | date:'MMM d, y · h:mm a' }}</span>
         </div>
         <div class="receipt-row">
           <span class="r-label">Card</span>
@@ -60,7 +60,7 @@
         <div class="receipt-divider"></div>
         <div class="receipt-row receipt-row--total">
           <span class="r-label">Remaining Balance</span>
-          <span class="r-value">{{ atm.formatCurrency(tx.balance) }}</span>
+          <span class="r-value">{{ atm.formatCurrency(tx.balanceAfter) }}</span>
         </div>
       </div>
 
