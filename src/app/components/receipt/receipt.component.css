@@ -1,0 +1,149 @@
+.receipt-page { display: flex; flex-direction: column; gap: 28px; }
+
+.page-header { display: flex; align-items: center; gap: 20px; }
+.back-btn { font-size: 13px; color: var(--text-2); text-decoration: none; font-family: var(--font-mono); transition: var(--transition); }
+.back-btn:hover { color: var(--accent); }
+.page-title { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: var(--text-1); letter-spacing: -0.5px; }
+
+/* No Transaction */
+.no-tx {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 60px 40px;
+  text-align: center;
+}
+.no-tx-icon { font-size: 40px; color: var(--text-3); margin-bottom: 8px; }
+.no-tx-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--text-1); }
+.no-tx-sub { font-size: 14px; color: var(--text-2); max-width: 300px; }
+.no-tx-actions { display: flex; gap: 12px; margin-top: 12px; }
+
+/* Receipt Card */
+.receipt-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Receipt Header */
+.receipt-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 36px 32px 28px;
+  background: var(--accent-dim);
+  border-bottom: 1px dashed var(--border-light);
+  position: relative;
+}
+
+.receipt-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), #3b82f6);
+}
+
+.receipt-header.is-deposit { background: #8b5cf615; }
+.receipt-header.is-deposit::before { background: linear-gradient(90deg, #a78bfa, #8b5cf6); }
+
+.receipt-type-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.is-deposit .receipt-type-icon { border-color: #a78bfa; color: #a78bfa; }
+
+.receipt-type-label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.receipt-amount {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -1.5px;
+}
+
+.is-deposit .receipt-amount { color: #a78bfa; }
+
+.receipt-status {
+  font-size: 12px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  background: var(--accent-dim);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--accent);
+}
+
+/* Receipt Body */
+.receipt-body { padding: 24px 28px; display: flex; flex-direction: column; gap: 14px; }
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+}
+
+.r-label { color: var(--text-3); font-family: var(--font-display); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+.r-value { color: var(--text-1); font-family: var(--font-mono); }
+.r-mono { font-size: 12px; color: var(--text-2); }
+
+.receipt-divider { height: 1px; background: var(--border); margin: 4px 0; border-style: dashed; }
+
+.receipt-row--total .r-label { color: var(--text-2); font-size: 12px; }
+.receipt-row--total .r-value { font-family: var(--font-display); font-size: 18px; font-weight: 800; color: var(--text-1); }
+
+/* Barcode */
+.receipt-footer {
+  padding: 20px 28px 24px;
+  border-top: 1px dashed var(--border-light);
+  display: flex;
+  justify-content: center;
+}
+
+.barcode { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+
+.barcode-bars {
+  display: flex;
+  gap: 2px;
+  align-items: stretch;
+  height: 40px;
+}
+
+.bar {
+  background: var(--text-2);
+  border-radius: 1px;
+  min-height: 100%;
+}
+
+.bar:nth-child(odd)  { height: 100%; opacity: 0.8; }
+.bar:nth-child(even) { height: 70%; align-self: center; opacity: 0.4; }
+
+.barcode-num { font-size: 10px; color: var(--text-3); font-family: var(--font-mono); letter-spacing: 0.08em; }
+
+/* Actions */
+.receipt-actions { display: flex; gap: 12px; justify-content: center; }
