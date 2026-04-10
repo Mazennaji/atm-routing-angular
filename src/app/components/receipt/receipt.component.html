@@ -1,1 +1,86 @@
-<p>receipt works!</p>
+<div class="receipt-page page-enter">
+
+  <div class="page-header">
+    <a routerLink="/" class="back-btn">← Back</a>
+    <h1 class="page-title">Transaction Receipt</h1>
+  </div>
+
+  @if (!tx) {
+    <div class="no-tx card">
+      <div class="no-tx-icon">≡</div>
+      <p class="no-tx-title">No Transaction Yet</p>
+      <p class="no-tx-sub">Complete a withdrawal or deposit to see your receipt here.</p>
+      <div class="no-tx-actions">
+        <a routerLink="/withdraw" class="btn btn-primary">Withdraw</a>
+        <a routerLink="/deposit"  class="btn btn-ghost">Deposit</a>
+      </div>
+    </div>
+  } @else {
+    <div class="receipt-card">
+
+      <div class="receipt-header" [class.is-deposit]="tx.type === 'deposit'">
+        <div class="receipt-type-icon">
+          {{ tx.type === 'withdrawal' ? '↑' : '↓' }}
+        </div>
+        <div class="receipt-type-label">
+          {{ tx.type === 'withdrawal' ? 'Cash Withdrawal' : 'Fund Deposit' }}
+        </div>
+        <div class="receipt-amount">
+          {{ atm.formatCurrency(tx.amount) }}
+        </div>
+        <div class="receipt-status">✓ Approved</div>
+      </div>
+
+      <div class="receipt-body">
+        <div class="receipt-row">
+          <span class="r-label">Transaction ID</span>
+          <span class="r-value r-mono">{{ txId }}</span>
+        </div>
+        <div class="receipt-row">
+          <span class="r-label">Date & Time</span>
+          <span class="r-value r-mono">{{ tx.timestamp | date:'MMM d, y · h:mm a' }}</span>
+        </div>
+        <div class="receipt-row">
+          <span class="r-label">Card</span>
+          <span class="r-value">{{ atm.cardName() }} •••• {{ atm.cardLast4() }}</span>
+        </div>
+        <div class="receipt-row">
+          <span class="r-label">Account</span>
+          <span class="r-value">Checking</span>
+        </div>
+        <div class="receipt-divider"></div>
+        <div class="receipt-row">
+          <span class="r-label">Amount</span>
+          <span class="r-value">{{ atm.formatCurrency(tx.amount) }}</span>
+        </div>
+        <div class="receipt-row">
+          <span class="r-label">Fee</span>
+          <span class="r-value text-accent">$0.00</span>
+        </div>
+        <div class="receipt-divider"></div>
+        <div class="receipt-row receipt-row--total">
+          <span class="r-label">Remaining Balance</span>
+          <span class="r-value">{{ atm.formatCurrency(tx.balance) }}</span>
+        </div>
+      </div>
+
+      <div class="receipt-footer">
+        <div class="barcode">
+          <div class="barcode-bars">
+            @for (w of [3,1,2,1,3,2,1,3,1,2,1,3,2,1,3,1,2,3,1,2]; track $index) {
+              <div class="bar" [style.width.px]="w"></div>
+            }
+          </div>
+          <p class="barcode-num">{{ txId }} · NexBank ATM</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="receipt-actions">
+      <a routerLink="/" class="btn btn-primary">Back to Home</a>
+      <a routerLink="/withdraw" class="btn btn-ghost">New Transaction</a>
+    </div>
+  }
+
+</div>
