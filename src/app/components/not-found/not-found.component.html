@@ -1,1 +1,17 @@
-<p>not-found works!</p>
+<div class="notfound-page page-enter">
+  <div class="glitch-code">404</div>
+  <h1 class="notfound-title">Route Not Found</h1>
+  <p class="notfound-sub">
+    The path you navigated to doesn't exist.<br>
+    This is the wildcard route <code class="code-inline">**</code> catching unmatched URLs.
+  </p>
+  <div class="routing-note card">
+    <p class="note-label">💡 Angular Routing Concept</p>
+    <p class="note-text">
+      The wildcard route <code>&#123; path: '**', component: NotFoundComponent &#125;</code>
+      must always be the <strong>last route</strong> in the routes array. Angular matches
+      routes top-to-bottom, so placing it last ensures all defined routes are checked first.
+    </p>
+  </div>
+  <a routerLink="/" class="btn btn-primary">Return Home</a>
+</div>
