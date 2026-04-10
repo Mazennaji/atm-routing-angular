@@ -1,0 +1,105 @@
+<div class="auth-page">
+
+  <!-- Background effects -->
+  <div class="auth-bg">
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow--1"></div>
+    <div class="bg-glow bg-glow--2"></div>
+  </div>
+
+  <div class="auth-container">
+
+    <!-- Logo -->
+    <div class="auth-logo">
+      <span class="logo-icon">◇</span>
+      <span class="logo-text">NexBank</span>
+    </div>
+
+    <!-- Card -->
+    <div class="auth-card">
+      <div class="card-accent"></div>
+
+      <div class="auth-header">
+        <h1 class="auth-title">Welcome back</h1>
+        <p class="auth-subtitle">Enter your credentials to access your account</p>
+      </div>
+
+      <!-- Error -->
+      <div class="auth-error" *ngIf="false" [class.visible]="error()">
+        <span class="error-icon">!</span>
+        <span>{{ error() }}</span>
+      </div>
+      @if (error()) {
+        <div class="auth-error visible">
+          <span class="error-icon">!</span>
+          <span>{{ error() }}</span>
+        </div>
+      }
+
+      <!-- Form -->
+      <div class="auth-form">
+        <div class="input-group">
+          <label class="input-label" for="email">Email Address</label>
+          <div class="input-wrapper">
+            <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+            <input
+              id="email"
+              type="email"
+              class="input-field"
+              placeholder="you@example.com"
+              [(ngModel)]="email"
+              (keydown.enter)="submit()"
+            />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label" for="pin">PIN Code</label>
+          <div class="input-wrapper">
+            <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            <input
+              id="pin"
+              [type]="showPin() ? 'text' : 'password'"
+              class="input-field"
+              placeholder="••••"
+              maxlength="4" inputmode="numeric" pattern="[0-9]*"
+              [(ngModel)]="pin"
+              (keydown.enter)="submit()"
+            />
+            <button type="button" class="pin-toggle" (click)="togglePin()">
+              {{ showPin() ? 'Hide' : 'Show' }}
+            </button>
+          </div>
+        </div>
+
+        <button
+          class="auth-btn"
+          (click)="submit()"
+          [class.loading]="loading()"
+          [disabled]="loading()"
+        >
+          @if (loading()) {
+            <span class="spinner"></span>
+            <span>Authenticating…</span>
+          } @else {
+            <span>Sign In</span>
+            <span class="btn-arrow">→</span>
+          }
+        </button>
+      </div>
+
+      <!-- Footer -->
+      <div class="auth-footer">
+        <span class="footer-text">Don't have an account?</span>
+        <a routerLink="/register" class="footer-link">Create Account</a>
+      </div>
+    </div>
+
+    <!-- Demo hint -->
+    <div class="demo-hint">
+      <span class="hint-label">Demo credentials</span>
+      <code class="hint-code">alex&#64;nexbank.com · 1234</code>
+    </div>
+
+  </div>
+</div>
